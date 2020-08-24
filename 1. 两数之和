@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> couple;
+        map<int, int>::iterator l_it;
+        vector<int> result;
+        for(int i = 0; i <nums.size(); i++)
+        {
+            l_it = couple.find(target - nums.at(i));
+            if(l_it != couple.end())
+            {
+                result.push_back(l_it->second);
+                result.push_back(i);
+                break;
+            }
+            couple[nums.at(i)] = i;
+        }
+        return result;
+    }
+};
