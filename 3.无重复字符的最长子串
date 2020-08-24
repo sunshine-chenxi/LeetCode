@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+         map<char,int> record;
+         map<char, int>::iterator l_it;
+         int output = 0, start = 0, temp;
+         for(int i = 0; i< s.size(); i++)
+         {
+             l_it = record.find(s[i]);
+             if(l_it != record.end())
+             {
+                 if(l_it->second < start)
+                 {
+                     temp = i - start + 1;
+                 }
+                 else{
+                     temp = i - l_it->second;
+                     start = l_it->second +1;
+                 }
+             }
+             else
+             {
+                temp = i - start + 1;
+             }
+            output = output > temp ? output : temp;
+             record[s[i]] = i;
+         }
+         return output;
+    }
+};
